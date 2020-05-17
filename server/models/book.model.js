@@ -10,6 +10,10 @@ const BookSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    created_at:{
+        type:Date,
+        required:true
     }
 }, {
     timeStamps: true
