@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const bookRouter = require('./routes/book.route')
-const authRouter = require('./routes/auth.route')
 
 require('./mongo-connection')
 
@@ -12,8 +11,7 @@ app.use(cors())
 app.set('view engine', 'pug')
 app.use(bodyParser.json())
 
-app.use('/api/book', bookRouter)
-app.use('/auth', authRouter)
+app.use('/api/books', bookRouter)
 
 
 app.get('/', (req, res) => {
