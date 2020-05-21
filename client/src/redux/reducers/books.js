@@ -1,6 +1,6 @@
 import {
     FETCH_BOOKS_PENDİNG,
-    FETCH_BOOKS_COMPLETED,
+    FETCH_BOOKS_FULFILLED,
     FETCH_BOOKS_REJECTED
 } from '../actions/books'
 
@@ -8,7 +8,7 @@ const initialState = {
     fetching: false,
     bookList : [],
     error: {}
-}
+};
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -17,12 +17,12 @@ export default (state = initialState, action) => {
                 ...state,
                 fetching: true
             }
-        case FETCH_BOOKS_COMPLETED:
+        case FETCH_BOOKS_FULFILLED:
             return {
                 ...state,
-                books:action.payload,
+                bookList:action.payload,
                 fetching: false
-            }
+            };
         case FETCH_BOOKS_REJECTED:
             return {
                 ...state,

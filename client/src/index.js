@@ -15,8 +15,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-// const promise = createPromise({types:{fullfilled:'success'}});
-
 
 const store = createStore(
 	rootReducer,
