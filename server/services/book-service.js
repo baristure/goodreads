@@ -1,8 +1,8 @@
-const BaseService = require('./base-service')
-const BookModel = require('../models/book.model')
+import BaseService from './base-service';
+import BookModel from '../models/book.model';
 
 class BookService extends BaseService {
-    model= BookModel
+    model = BookModel
 }
 
 module.exports = new BookService()

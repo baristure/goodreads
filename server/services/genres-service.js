@@ -1,6 +1,5 @@
-const BaseService = require('./base-service')
-const GenresModel = require('../models/genres.model')
-
+import BaseService from './base-service';
+import GenresModel from '../models/genres.model';
 class GenresService extends BaseService {
     model= GenresModel
 }
