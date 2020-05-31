@@ -16,12 +16,15 @@ const BookSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    genre:{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Genre',
+        required:true,
+    },
     created_at:{
         type:Date,
         required:true
     }
-}, {
-    timeStamps: true
 });
 BookSchema.plugin(require('mongoose-autopopulate'))
 

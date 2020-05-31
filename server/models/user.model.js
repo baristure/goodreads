@@ -8,7 +8,8 @@ const userSchema = new Schema({
         required: true,
         unique: true,
         trim: true,
-        minLength: 3
+        minLength: 3,
+        maxlength: 12
     },
     password: {
         type: String,
@@ -16,11 +17,17 @@ const userSchema = new Schema({
         trim: true,
         minLength: 5,
         maxLength: 12
+    },
+    is_active: {
+        type: Boolean,
+        default: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now()
     }
-}, {
-    timeStamps: true
 });
 
-const User = mongoose.model('User',userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

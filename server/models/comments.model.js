@@ -2,22 +2,33 @@ import mongoose from 'mongoose';
 
 const CommentsSchema = new mongoose.Schema({
     book: {
-        type: String,
-        required: true
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Book',
+        required:true,
+        autopopulate: true
     },
-    username: {
-        type: String,
-        required: true
+    user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'User',
+        required:true,
+        autopopulate: true
     },
-    text: {
+    content: {
         type: String,
-        required: true
+        required: true,
+        maxlength: [500, 'Comment can not exceed 500 characters']
+    },
+    status: {
+        type: Boolean,
+        default: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now()
     }
-}, {
-    timeStamps: true
 });
 CommentsSchema.plugin(require('mongoose-autopopulate'))
 
-const CommentsModel = mongoose.model('Book',CommentsSchema);
+const CommentsModel = mongoose.model('Comment', CommentsSchema);
 
 module.exports = CommentsModel;
