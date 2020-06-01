@@ -3,38 +3,12 @@ const router = express.Router()
 
 let CommentService = require('../services/comment-service');
 
-//Get All Comments via BookName
-router.get('/:bookId', async (req, res) => {
-  try {
-    const comments = await CommentService.findAll({bookName:req.params.id})
-    res.send(comments)
-  } catch (err) {
-    res.status(404)
-    res.send({
-      error: "Get books doesn't exist! " + err
-    })
-  }
-})
 
-//Get one book
-router.get('/:id', async (req, res) => {
-  try {
-    const book = await CommentService.find(req.params.id)
-    res.send(book)
-  } catch (err) {
-    res.status(404)
-    res.send({
-      error: "Get book doesn't exist! " + err
-    })
-  }
-})
-
-
-// Add new book
+// Add new comment
 router.post('/add', async (req, res) => {
   try {
-    const book = await CommentService.add(req.body)
-    res.send(book)
+    const comment = await CommentService.add(req.body)
+    res.send(comment)
   } catch (err) {
     res.status(404)
     res.send({
@@ -43,11 +17,11 @@ router.post('/add', async (req, res) => {
   }
 })
 
-//Delete one book
+//Delete comment
 router.delete('/delete/:id', async (req, res) => {
   try {
-    const book = await CommentService.del(req.params.id)
-    res.send(book)
+    const comment = await CommentService.del(req.params.id)
+    res.send(comment)
   } catch (err) {
     res.status(404)
     res.send({
