@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import bookRouter from './routes/book.route'
 import authRouter from './routes/auth.route'
+import genresRouter from './routes/genres.route'
 import passport from 'passport';
 
 require('./mongo-connection')
@@ -15,7 +16,8 @@ app.use(bodyParser.json())
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/api/books', bookRouter)
+app.use('/api/book', bookRouter)
+app.use('/api/genre', genresRouter)
 app.use('/auth', authRouter)
 
 

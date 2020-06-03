@@ -23,7 +23,7 @@ const BookSchema = new mongoose.Schema({
     },
     created_at:{
         type:Date,
-        required:true
+        default: Date.now()
     }
 });
 BookSchema.plugin(require('mongoose-autopopulate'))
