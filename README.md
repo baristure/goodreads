@@ -27,7 +27,7 @@ npm i
 
 ### Backend URL configuration
 
-Local development and deployments work different in ways. In local, most of the time, `localhost` hostname (which points to your very own machine) is used with different port numbers. For real environments, most of the times, different URLs are used for different apps. So `localhost:4000/person/all` URLs will not work when we deploy our app.
+Local development and deployments work different in ways. In local, most of the time, `localhost` hostname (which points to your very own machine) is used with different port numbers. For real environments, most of the times, different URLs are used for different apps. So `localhost:4000/api/book` URLs will not work when we deploy our app.
 
 
 ### Backend mongoDB connection
