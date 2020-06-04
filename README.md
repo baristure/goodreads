@@ -1,4 +1,4 @@
-# GoodReads-İyiOkumalar
+# GoodReads
 
 ## Requirements
 
