@@ -11,23 +11,28 @@ const BookSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    author: {
+        type: String,
+        required: true,
+        trim: true
+    },
     img: {
         type: String,
         required: true,
         trim: true
     },
-    genre:{
+    genreId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Genre',
-        required:true,
+        required: true,
     },
-    created_at:{
-        type:Date,
+    created_at: {
+        type: Date,
         default: Date.now()
     }
 });
 BookSchema.plugin(require('mongoose-autopopulate'))
 
-const BookModel = mongoose.model('Book',BookSchema);
+const BookModel = mongoose.model('Book', BookSchema);
 
 module.exports = BookModel;

@@ -7,6 +7,7 @@ let BookService = require('../services/book-service');
 router.get('/', async (req, res) => {
   try {
     const book = await BookService.findAll()
+    console.log('BARIŞ');
     res.send(book)
   } catch (err) {
     res.status(404)
@@ -29,6 +30,19 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+//Filter books by genres
+router.get('/filter/:genreId', async (req, res) => {
+  try {
+    const params =  req.params
+    const book = await BookService.findByParams(params);
+    res.send(book)
+  } catch (err) {
+    res.status(404)
+    res.send({
+      error: "Get books by genres doesn't exist! " + err
+    })
+  }
+})
 
 // Add new book
 router.post('/add', async (req, res) => {
