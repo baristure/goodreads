@@ -4,6 +4,7 @@ import cors from 'cors';
 import bookRouter from './routes/book.route'
 import authRouter from './routes/auth.route'
 import genresRouter from './routes/genres.route'
+import commentRouter from './routes/comments.route'
 import passport from 'passport';
 
 require('./mongo-connection')
@@ -18,6 +19,7 @@ app.use(passport.session())
 
 app.use('/api/book', bookRouter)
 app.use('/api/genre', genresRouter)
+app.use('/api/comment', commentRouter)
 app.use('/auth', authRouter)
 
 

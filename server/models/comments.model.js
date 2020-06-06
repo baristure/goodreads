@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
 const CommentsSchema = new mongoose.Schema({
-    book: {
+    bookId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Book',
         required:true,
         autopopulate: true
     },
-    user: {
+    userId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
         required:true,

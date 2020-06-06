@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-//Filter books by genres
+// Get books by genres
 router.get('/filter/:genreId', async (req, res) => {
   try {
     const params =  req.params

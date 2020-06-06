@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router()
 
-let CommentService = require('../services/comment-service');
+let CommentService = require('../services/comments-service');
 
 
 // Add new comment
@@ -12,11 +12,23 @@ router.post('/add', async (req, res) => {
   } catch (err) {
     res.status(404)
     res.send({
-      error: "Post doesn't exist!" + err
+      error: "Post comment doesn't exist!" + err
     })
   }
 })
-
+//Get comments by bookId
+router.get('/get-comments/:bookId', async (req, res) => {
+  try {
+    const params =  req.params
+    const comment = await CommentService.findByParams(params);
+    res.send(comment)
+  } catch (err) {
+    res.status(404)
+    res.send({
+      error: "Get comments by bookId doesn't exist! " + err
+    })
+  }
+})
 //Delete comment
 router.delete('/delete/:id', async (req, res) => {
   try {
@@ -25,7 +37,7 @@ router.delete('/delete/:id', async (req, res) => {
   } catch (err) {
     res.status(404)
     res.send({
-      error: "Delete one doesn't exist!" + err
+      error: "Delete comment doesn't exist!" + err
     })
   }
 })
