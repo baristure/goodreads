@@ -17,7 +17,7 @@ router.post('/add', async (req, res) => {
   }
 })
 //Get comments by bookId
-router.get('/get-comments/:bookId', async (req, res) => {
+router.get('/:bookId', async (req, res) => {
   try {
     const params =  req.params
     const comment = await CommentService.findByParams(params);

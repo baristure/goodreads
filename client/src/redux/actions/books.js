@@ -11,7 +11,7 @@ export function fetchBooks() {
     return dispatch => {
         dispatch({
             type: "FETCH_BOOKS",
-            payload: axios.get(`${API_BASE}/books`)
+            payload: axios.get(`${API_BASE}/book`)
                 .then(result => result.data)
         })
     }

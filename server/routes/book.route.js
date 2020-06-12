@@ -9,7 +9,6 @@ let BookService = require('../services/book-service');
 router.get('/', async (req, res) => {
   try {
     const book = await BookService.findAll()
-    console.log('BARIŞ');
     res.send(book)
   } catch (err) {
     res.status(404)
