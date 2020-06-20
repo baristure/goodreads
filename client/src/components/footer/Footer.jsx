@@ -5,7 +5,7 @@ import Emoji from 'a11y-react-emoji'
 export default class Footer extends Component {
     render() {
         return (
-            <Navbar bg="primary" fixed="bottom">
+            <Navbar className="mt-2" bg="primary" fixed="relative">
                 <Col md={{ span: 6, offset: 3 }}>
                     <div>Made with
                         {' '}

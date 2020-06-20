@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import  { Container, Row, Col } from 'reactstrap';
+import { Container, Row,Col, Image, Card, Button } from 'react-bootstrap';
 
 const BookList = ({ books }) => {
 
@@ -17,8 +17,17 @@ const BookList = ({ books }) => {
 					<Container>
 						<Row>
 							{books.bookList.map((book) => (
-								<Col sm={8} key={book._id} book={book}>
-									{book.title}
+								<Col xs={6} md={4} key={book._id} book={book}>
+									<Card className="mt-2 p-3" >
+										<Image src={book.img} rounded />
+										<Card.Body>
+											<Card.Title>{book.title}</Card.Title>
+											<Card.Text>
+												{book.description}
+											</Card.Text>
+											<Button variant="primary">Detail</Button>
+										</Card.Body>
+									</Card>
 								</Col>
 							))}
 						</Row>
