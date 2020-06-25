@@ -7,7 +7,6 @@ import genresRouter from './routes/genres.route'
 import commentRouter from './routes/comments.route'
 import ratingRouter from './routes/ratings.route'
 import passport from 'passport';
-
 require('./mongo-connection')
 
 const app = express()
