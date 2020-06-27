@@ -13,9 +13,12 @@ const GenreList = ({ genres }) => {
           <p className="genre-title">GENRES</p>
           {genres.genreList.map((genre) => (
             <p className="mt-1 pt-2 genre" key={genre._id} genre={genre}>
-              <a className="genre-link" href={"/books/genre/" + genre._id}>
+              <span
+                className="genre-link"
+                id={genre._id}
+              >
                 {genre.name}
-              </a>
+              </span>
             </p>
           ))}
         </div>

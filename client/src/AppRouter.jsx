@@ -5,7 +5,6 @@ import HomePage from "./pages/homepage";
 import Books from "./pages/books";
 import Genres from "./pages/genres";
 import About from "./pages/about";
-import BooksByGenre from "./pages/booksbygenre";
 
 const AppRouter = () => {
   return (
@@ -13,11 +12,6 @@ const AppRouter = () => {
       <div>
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/books" component={Books}></Route>
-        <Route
-          exact
-          path="/books/genre/:genreId"
-          component={BooksByGenre}
-        ></Route>
         <Route exact path="/about" component={About}></Route>
         <Route exact path="/genres" component={Genres}></Route>
       </div>

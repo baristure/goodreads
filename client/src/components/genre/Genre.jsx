@@ -4,19 +4,27 @@ import { connect } from "react-redux";
 
 import { fetchGenres } from "../../redux/actions/genres";
 import GenreList from "../genrelist/GenreList";
+import { fetchBooksbyGenres } from "../../redux/actions/books";
 
 class Genre extends Component {
   static propTypes = {
     genres: PropTypes.object.isRequired,
   };
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchGenres();
   }
+  handleGenreSelect = async (genreId) => {
+    const genres = await fetchBooksbyGenres(genreId);
+    this.setState({ genres });
+  };
 
   render() {
     return (
       <div>
-        <GenreList genres={this.props.genres} />
+        <GenreList
+          genres={this.props.genres}
+          handleGenreSelect={this.handleGenreSelect}
+        />
       </div>
     );
   }

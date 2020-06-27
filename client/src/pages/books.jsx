@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -6,24 +6,22 @@ import { fetchBooks } from "../redux/actions/books";
 import Book from "../components/book/Book";
 import Genre from "../components/genre/Genre";
 
-class Books extends Component {
-  render() {
-    return (
-      <div>
-        <Container>
-          <Row>
-            <Col xs={2} md={2}>
-              <Genre />
-            </Col>
-            <Col xs={10} md={10}>
-              <Book />
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
-}
+const Books = () => {
+  return (
+    <div>
+      <Container>
+        <Row>
+          <Col xs={2} md={2}>
+            <Genre />
+          </Col>
+          <Col xs={10} md={10}>
+            <Book />
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 
 const mapStateToProps = ({ books }) => {
   return {
