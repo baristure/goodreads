@@ -1,8 +1,8 @@
-import BaseService from './base-service';
-import CommentsModel from '../models/comments.model';
+import BaseService from "./base-service";
+import CommentsModel from "../models/comments.model";
 
 class CommentsService extends BaseService {
-    model= CommentsModel
+  model = CommentsModel;
 }
 
-module.exports = new CommentsService()
+module.exports = new CommentsService();

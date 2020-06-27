@@ -11,16 +11,21 @@
 ## Commands we run
 
 #  focusing on backend
+```
 cd backend
-
+```
 # install node modules
+```
 npm i
-
+```
 #  focusing on frontend
+```
 cd ../frontend
+```
 # install node modules
+```
 npm i
-
+```
 
 ### Port configuration
  See `process.env.PORT` in `backend/index.js`, how the value is retrieved with a fallback value of `4000`. So if `process.env.PORT` is not defined, `4000` will be used, just as it was before.

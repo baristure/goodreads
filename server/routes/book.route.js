@@ -1,77 +1,77 @@
-import express from 'express'
-import BookModel from '../models/book.model';
+import express from "express";
+import BookModel from "../models/book.model";
 
-const router = express.Router()
+const router = express.Router();
 
-let BookService = require('../services/book-service');
+let BookService = require("../services/book-service");
 
 //Get All Books
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const book = await BookService.findAll()
-    res.send(book)
+    const book = await BookService.findAll();
+    res.send(book);
   } catch (err) {
-    res.status(404)
+    res.status(404);
     res.send({
-      error: "Get books doesn't exist! " + err
-    })
+      error: "Get books doesn't exist! " + err,
+    });
   }
-})
+});
 
 //Get one book
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const book = await BookService.find(req.params.id)
-    res.send(book)
+    const book = await BookService.find(req.params.id);
+    res.send(book);
   } catch (err) {
-    res.status(404)
+    res.status(404);
     res.send({
-      error: "Get book doesn't exist! " + err
-    })
+      error: "Get book doesn't exist! " + err,
+    });
   }
-})
+});
 
 // Get books by genres
-router.get('/genre/:genreId', async (req, res) => {
+router.get("/genre/:genreId", async (req, res) => {
   try {
-    let result= {};
-    const params=req.params
+    let result = {};
+    const params = req.params;
     result.result = await BookService.findByParams(params);
     result.countQuery = result.result.length;
-    res.json(result)
+    res.json(result);
   } catch (err) {
-    res.status(404)
+    res.status(404);
     res.send({
-      error: "Get books by genres doesn't exist! " + err
-    })
+      error: "Get books by genres doesn't exist! " + err,
+    });
   }
-})
+});
 
 // Add new book
-router.post('/add', async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
-    const book = await BookService.add(req.body)
-    res.send(book)
+    const book = await BookService.add(req.body);
+    res.send(book);
   } catch (err) {
-    res.status(404)
+    res.status(404);
     res.send({
-      error: "Post doesn't exist!" + err
-    })
+      error: "Post doesn't exist!" + err,
+    });
   }
-})
+});
 
 //Delete one book
-router.delete('/delete/:id', async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
-    const book = await BookService.del(req.params.id)
-    res.send(book)
+    const book = await BookService.del(req.params.id);
+    res.send(book);
   } catch (err) {
-    res.status(404)
+    res.status(404);
     res.send({
-      error: "Delete one doesn't exist!" + err
-    })
+      error: "Delete one doesn't exist!" + err,
+    });
   }
-})
+});
 
 // function paginatedResults(model) {
 //   return async (req, res, next) => {
