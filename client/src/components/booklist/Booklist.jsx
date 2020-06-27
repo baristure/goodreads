@@ -17,7 +17,7 @@ const BookList = ({ books }) => {
 					<Container>
 						<Row>
 							{books.bookList.map((book) => (
-								<Col xs={6} md={4} key={book._id} book={book}>
+								<Col xs={6} md={5} key={book._id} book={book}>
 									<Card className="mt-2 p-3" >
 										<Image src={book.img} rounded />
 										<Card.Body>
