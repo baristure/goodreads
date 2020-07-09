@@ -13,12 +13,13 @@ const GenreList = ({ genres }) => {
           <p className="genre-title">GENRES</p>
           {genres.genreList.map((genre) => (
             <p className="mt-1 pt-2 genre" key={genre._id} genre={genre}>
-              <span
+              <a
                 className="genre-link"
                 id={genre._id}
+                href={`/book/genre/` + genre._id}
               >
                 {genre.name}
-              </span>
+              </a>
             </p>
           ))}
         </div>

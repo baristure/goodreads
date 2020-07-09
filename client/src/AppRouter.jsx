@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import HomePage from "./pages/homepage";
 import Books from "./pages/books";
+import FilterBook from "./pages/filterBooks";
 import Genres from "./pages/genres";
 import About from "./pages/about";
 
@@ -12,6 +13,7 @@ const AppRouter = () => {
       <div>
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/books" component={Books}></Route>
+        <Route exact path="/books/:genreId" component={FilterBook}></Route>
         <Route exact path="/about" component={About}></Route>
         <Route exact path="/genres" component={Genres}></Route>
       </div>

@@ -8,7 +8,7 @@ export const FETCH_BOOKSBYGENRES_FULFILLED = "FETCH_BOOKSBYGENRES_FULFILLED";
 export const FETCH_BOOKSBYGENRES_REJECTED = "FETCH_BOOKSBYGENRES_REJECTED";
 export const FETCH_BOOKSBYGENRES_PENDİNG = "FETCH_BOOKSBYGENRES_PENDİNG";
 
-export function fetchBooks() {
+export const fetchBooks=()=> {
   return (dispatch) => {
     dispatch({
       type: "FETCH_BOOKS",
