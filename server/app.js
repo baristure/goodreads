@@ -12,12 +12,11 @@ require("./mongo-connection");
 const app = express();
 app.use(cors());
 
-app.set("view engine", "pug");
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/api/book", bookRouter);
+app.use("/api/books", bookRouter);
 app.use("/api/genre", genresRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/rating", ratingRouter);
