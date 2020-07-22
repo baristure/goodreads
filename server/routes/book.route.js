@@ -1,4 +1,4 @@
-import express, { query } from "express";
+import express from "express";
 import BookModel from "../models/book.model";
 
 const router = express.Router();
@@ -8,7 +8,7 @@ let BookService = require("../services/book-service");
 //Get All Books
 router.get("/", async (req, res) => {
   try {
-    const book = await BookService.findByParams(req.query);
+    const book = await BookService.findAll();
     res.send(book);
   } catch (err) {
     res.status(404);
