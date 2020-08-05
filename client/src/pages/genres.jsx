@@ -1,13 +1,7 @@
-import React, { Component } from 'react'
+import React from "react";
 
-import Genre from "../components/genre/Genre";
+const Genres = () => {
+  return <div>Genres Page</div>;
+};
 
-export default class  Genres extends Component {
-    render() {
-        return (
-            <div>
-                <Genre></Genre>
-            </div>
-        )
-    }
-}
+export default Genres;
