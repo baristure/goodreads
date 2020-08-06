@@ -1,7 +1,17 @@
 import React from "react";
+import { useParams } from "react-router";
 
-const BookDetail = () => {
-  return <div>BookDetail Page</div>;
+import { fetchBookById } from "../redux/actions/books";
+
+import BookDetail from "../components/bookdetail/BookDetail";
+
+const BookDetailPage = () => {
+  const { bookId } = useParams();
+  return (
+    <div>
+      <BookDetail bookId={bookId} />{" "}
+    </div>
+  );
 };
 
-export default BookDetail;
+export default BookDetailPage;

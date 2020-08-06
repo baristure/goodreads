@@ -17,7 +17,13 @@ const BookList = ({ books }) => {
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button variant="primary" href={"book-detail/"+book._id} bookId={book._id}>Detail</Button>
+                  <Button
+                    variant="primary"
+                    href={"book-detail/" + book._id}
+                    bookid={book._id}
+                  >
+                    Detail
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>
