@@ -1,12 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Row, Col, Image, Card, Button } from "react-bootstrap";
-const BookDetail = ({ bookId }) => {
 
+
+// import { Row, Col, Image, Card, Button } from "react-bootstrap";
+
+const BookDetail = ({ book }) => {
+  // const {bookId}=useParams();
   const emptyMessage = <p>Book data can not found :(</p>;
-  const book = <div>{bookId}</div>;
+  console.log(book.book.title);
+  const bookView = <div>Kitap Id ={book.book.title}</div>;
 
-  return <div>{book ? book : emptyMessage}</div>;
+  return <div>{bookView ? bookView : emptyMessage}</div>;
 };
 
 // BookDetail.propTypes = {

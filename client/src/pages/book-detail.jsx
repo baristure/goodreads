@@ -1,17 +1,42 @@
-import React from "react";
-import { useParams } from "react-router";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
 
-import { fetchBookById } from "../redux/actions/books";
+import { fetchBookById } from "../redux/actions/getbook";
 
 import BookDetail from "../components/bookdetail/BookDetail";
 
-const BookDetailPage = () => {
-  const { bookId } = useParams();
-  return (
-    <div>
-      <BookDetail bookId={bookId} />{" "}
-    </div>
-  );
+class BookDetailPage extends Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+  };
+
+  componentDidMount() {
+    const bookId = this.props.match.params.bookId;
+
+    this.props.fetchBookById(bookId);
+  }
+
+  render() {
+    return (
+      <div>
+        <BookDetail book={this.props.book} />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ book }) => {
+  return {
+    book,
+  };
 };
 
-export default BookDetailPage;
+const mapDispatchToProps = {
+  fetchBookById,
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(BookDetailPage)
+);

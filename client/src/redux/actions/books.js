@@ -7,9 +7,7 @@ export const FETCH_BOOKS_PENDİNG = "FETCH_BOOKS_PENDİNG";
 export const FETCH_BOOKSBYGENRES_FULFILLED = "FETCH_BOOKSBYGENRES_FULFILLED";
 export const FETCH_BOOKSBYGENRES_REJECTED = "FETCH_BOOKSBYGENRES_REJECTED";
 export const FETCH_BOOKSBYGENRES_PENDİNG = "FETCH_BOOKSBYGENRES_PENDİNG";
-export const FETCH_BOOK_FULFILLED = "FETCH_BOOK_FULFILLED";
-export const FETCH_BOOK_REJECTED = "FETCH_BOOK_REJECTED";
-export const FETCH_BOOK_PENDİNG = "FETCH_BOOK_PENDİNG";
+
 
 export function fetchBooks() {
   return (dispatch) => {
@@ -31,13 +29,4 @@ export function fetchBooksbyGenres(genreId) {
     });
   };
 }
-export function fetchBookById(bookId) {
-  return (dispatch) => {
-    dispatch({
-      type: "FETCH_BOOKBYID",
-      payload: axios
-        .get(`${API_BASE}/book-detail/${bookId}`)
-        .then((result) => result.data),
-    });
-  };
-}
+
