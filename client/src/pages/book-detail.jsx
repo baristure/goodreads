@@ -7,12 +7,15 @@ import { fetchBookById } from "../redux/actions/getbook";
 
 import BookDetail from "../components/bookdetail/BookDetail";
 
+// const { bookId } = useParams();
+
 class BookDetailPage extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
+    // const { bookId } = useParams();
     const bookId = this.props.match.params.bookId;
 
     this.props.fetchBookById(bookId);
