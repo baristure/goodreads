@@ -1,26 +1,30 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import bookRouter from "./routes/book.route";
-import authRouter from "./routes/auth.route";
-import genresRouter from "./routes/genres.route";
-import commentRouter from "./routes/comments.route";
-import ratingRouter from "./routes/ratings.route";
 import passport from "passport";
+import session from 'express-session'
+
+import router from "./routes";
+
 require("./mongo-connection");
 
 const app = express();
 app.use(cors());
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(
+  session({
+    secret: "goodreads-clone",
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-app.use("/api/books", bookRouter);
-app.use("/api/genre", genresRouter);
-app.use("/api/comment", commentRouter);
-app.use("/api/rating", ratingRouter);
-app.use("/auth", authRouter);
+app.use("/", router);
 
 app.get("/", (req, res) => {
   res.render("index");
