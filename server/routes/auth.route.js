@@ -2,18 +2,16 @@ import mongoose from "mongoose";
 import passport from "passport";
 import express from "express";
 
-import auth from '../config/auth';
+import auth from "../config/auth";
+require("../models/user.model");
 
 const router = express.Router();
 const Users = mongoose.model("Users");
 
-
 //POST new user route (optional, everyone has access)
 router.post("/", auth.optional, (req, res, next) => {
-  const {
-    body: { user },
-  } = req;
-
+  const user = req.body;
+console.log(user.passport);
   if (!user.email) {
     return res.status(422).json({
       errors: {

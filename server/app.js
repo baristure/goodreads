@@ -4,7 +4,7 @@ import cors from "cors";
 import passport from "passport";
 import session from 'express-session'
 
-import router from "./routes";
+import router from "./routes/index";
 
 require("./mongo-connection");
 
