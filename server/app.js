@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import passport from "passport";
 import session from 'express-session'
+import flash from 'express-flash'
+import methodOverride from "method-override";
 
 import router from "./routes/index";
 
@@ -13,6 +15,7 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
@@ -23,10 +26,11 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(methodOverride("_method"));
 
 app.use("/", router);
 
-app.get("/", (req, res) => {
+app.get("/",checkAuthenticated, (req, res) => {
   res.render("index");
 });
 

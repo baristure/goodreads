@@ -1,7 +1,7 @@
 import express from "express";
 
 import bookRouter from "./book.route";
-import authRouter from "./auth.route";
+import userRouter from "./user.route";
 import genresRouter from "./genres.route";
 import commentRouter from "./comments.route";
 import ratingRouter from "./ratings.route";
@@ -12,6 +12,6 @@ router.use("/api/books", bookRouter);
 router.use("/api/genre", genresRouter);
 router.use("/api/comment", commentRouter);
 router.use("/api/rating", ratingRouter);
-router.use("/auth", authRouter);
+router.use("/", userRouter);
 
 module.exports = router;
