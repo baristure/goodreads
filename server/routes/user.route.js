@@ -1,73 +1,83 @@
 import mongoose from "mongoose";
 import passport from "passport";
 import express from "express";
+import bcrypt from "bcrypt";
 
-import initializePassport from "../helpers/passport";
-import checkAuthenticated from '../helpers/checkAuthenticated';
-import checkNotAuthenticated from '../helpers/checkNotAuthenticated';
+//Load User Model
+import User from "../models/user.model";
 
-require("../models/user.model");
+// This function created for the authentication necessary routes
+import forwardAuthenticated from "../helpers/auth";
 
 const router = express.Router();
-let UsersService = require("../services/user-service");
 
+// Register
+router.post("/register", (req, res) => {
+  console.log(req.body);
+  const { name, email, password, password2 } = req.body;
+  let errors = [];
 
-const initializePassport = require("./passport-config");
-initializePassport(
-  passport,
-  (email) => UsersService.find({email:email}),
-  (name) => UsersService.find({name:name})
-);
-
-
-
-router.get("/", checkAuthenticated, (req, res) => {
-  res.render("index.ejs", { name: req.user.name });
-});
-
-router.post(
-  "/login",
-  checkNotAuthenticated,
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-  })
-);
-
-
-router.post("/register", checkNotAuthenticated, async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const userBody ={
-      name:req.body.name,
-      email:req.body.email,
-      password:hashedPassword
-    }
-    const user = await UsersService.add(userBody)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               x 
-    // res.status(200);
-    res.redirect("/");
-  } catch {
-    res.redirect("/register");
+  if (!name || !email || !password || !password2) {
+    errors.push({ msg: "Please enter all fields" });
   }
-});
 
-router.post("/add", async (req, res) => {
-  try {
-    const book = await BookService.add(req.body);
-    res.send(book);
-  } catch (err) {
-    res.status(404);
-    res.send({
-      error: "Post doesn't exist!" + err,
+  if (password != password2) {
+    errors.push({ msg: "Passwords do not match" });
+  }
+
+  if (password.length < 6) {
+    errors.push({ msg: "Password must be at least 6 characters" });
+  }
+
+  if (errors.length > 0) {
+    res.send("User can not be registered");
+  } else {
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        errors.push({ msg: "Email already exists" });
+      } else {
+        const newUser = new User({
+          name,
+          email,
+          password,
+        });
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then((user) => {
+                req.flash(
+                  "success_msg",
+                  "You are now registered and can log in"
+                );
+                res.send("User is registered successfully");
+                // res.redirect('/users/login');
+              })
+              .catch((err) => console.log(err));
+          });
+        });
+      }
     });
   }
 });
 
-router.delete("/logout", (req, res) => {
-  req.logOut();
-  res.redirect("/login");
+// Login
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/users/login",
+    failureFlash: true,
+  })(req, res, next);
 });
 
+// Logout
+router.get("/logout", (req, res) => {
+  req.logout();
+  req.flash("success_msg", "You are logged out");
+  res.redirect("/");
+});
 
 module.exports = router;

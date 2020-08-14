@@ -2,36 +2,46 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import passport from "passport";
-import session from 'express-session'
-import flash from 'express-flash'
-import methodOverride from "method-override";
+import session from "express-session";
+import flash from "connect-flash";
 
 import router from "./routes/index";
 
 require("./mongo-connection");
+require("./helpers/passport")(passport);
 
 const app = express();
 app.use(cors());
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+
+// Express session
 app.use(
   session({
-    secret: "goodreads-clone",
-    cookie: { maxAge: 60000 },
-    resave: false,
-    saveUninitialized: false,
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
   })
 );
-app.use(methodOverride("_method"));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// Global variables
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
+
 
 app.use("/", router);
-
-app.get("/",checkAuthenticated, (req, res) => {
-  res.render("index");
-});
 
 module.exports = app;
