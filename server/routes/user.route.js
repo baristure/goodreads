@@ -53,8 +53,8 @@ router.post("/register", (req, res) => {
                   "success_msg",
                   "You are now registered and can log in"
                 );
-                res.send("User is registered successfully");
-                // res.redirect('/users/login');
+                res.send("User registered successfully");
+                // res.redirect('/login');
               })
               .catch((err) => console.log(err));
           });
@@ -67,8 +67,8 @@ router.post("/register", (req, res) => {
 // Login
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/users/login",
+    successRedirect: "/",
+    failureRedirect: "/login",
     failureFlash: true,
   })(req, res, next);
 });
@@ -77,7 +77,7 @@ router.post("/login", (req, res, next) => {
 router.get("/logout", (req, res) => {
   req.logout();
   req.flash("success_msg", "You are logged out");
-  res.redirect("/");
+  res.send("/");
 });
 
 module.exports = router;
